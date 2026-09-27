@@ -24,34 +24,11 @@
  */
 package net.runelite.client.plugins.timetracking.farming;
 
-import com.google.common.annotations.VisibleForTesting;
-import com.google.common.collect.ImmutableSet;
-import java.time.Duration;
-import java.time.Instant;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.ChatMessageType;
-import net.runelite.api.Client;
-import net.runelite.api.GameObject;
-import net.runelite.api.ObjectComposition;
-import net.runelite.api.Tile;
-import net.runelite.api.annotations.Varbit;
-import net.runelite.api.coords.LocalPoint;
-import net.runelite.api.coords.WorldPoint;
-import net.runelite.api.events.ChatMessage;
-import net.runelite.api.events.GameStateChanged;
-import net.runelite.api.events.MenuOptionClicked;
-import net.runelite.api.gameval.InterfaceID;
-import net.runelite.api.gameval.ItemID;
-import net.runelite.api.widgets.Widget;
+import net.runelite.api.events.VarbitChanged;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.timetracking.TimeTrackingConfig;
@@ -62,39 +39,8 @@ import net.runelite.client.plugins.timetracking.TimeTrackingConfig;
 public class CompostTracker
 {
 
-	@Value
-	@VisibleForTesting
-	static class PendingCompost
-	{
-		Instant timeout;
-		WorldPoint patchLocation;
-		FarmingPatch farmingPatch;
-	}
-
-	private static final Duration COMPOST_ACTION_TIMEOUT = Duration.ofSeconds(30);
-
-	private static final Pattern COMPOST_USED_ON_PATCH = Pattern.compile(
-		"You treat the .+ with (?<compostType>ultra|super|)compost\\.");
-	private static final Pattern FERTILE_SOIL_CAST = Pattern.compile(
-		"^The .+ has been treated with (?<compostType>ultra|super|)compost");
-	private static final Pattern ALREADY_TREATED = Pattern.compile(
-		"This .+ has already been (treated|fertilised) with (?<compostType>ultra|super|)compost(?: - the spell can't make it any more fertile)?\\.");
-	private static final Pattern INSPECT_PATCH = Pattern.compile(
-		"This is an? .+\\. The soil has been treated with (?<compostType>ultra|super|)compost\\..*");
-
-	private static final ImmutableSet<Integer> COMPOST_ITEMS = ImmutableSet.of(
-		ItemID.BUCKET_COMPOST,
-		ItemID.BUCKET_SUPERCOMPOST,
-		ItemID.BUCKET_ULTRACOMPOST,
-		ItemID.BOTTOMLESS_COMPOST_BUCKET_FILLED
-	);
-
-	private final Client client;
 	private final FarmingWorld farmingWorld;
 	private final ConfigManager configManager;
-
-	@VisibleForTesting
-	final Map<FarmingPatch, PendingCompost> pendingCompostActions = new HashMap<>();
 
 	private static String configKey(FarmingPatch fp)
 	{
@@ -124,170 +70,38 @@ public class CompostTracker
 	}
 
 	@Subscribe
-	public void onMenuOptionClicked(MenuOptionClicked e)
+	public void onVarbitChanged(VarbitChanged event)
 	{
-		if (!isCompostAction(e))
+		if (event.getVarbitId() == -1)
 		{
 			return;
 		}
+		// TODO: Do we care about triggering this on login?
+		// TODO: Consider getting rid of the configs, blagh, can't easily get rid of it because no off thread access from swing -> read varbit
+		// From a varbit, obtain a related FarmingPatch, returning on no match
+		// Update the compost state by setCompostState
+		var farmingPatch = farmingWorld.getPatchForCompostVarbit(event.getVarbitId());
 
-		ObjectComposition patchDef = client.getObjectDefinition(e.getId());
-		WorldPoint actionLocation = WorldPoint.fromScene(client, e.getParam0(), e.getParam1(), client.getPlane());
-		FarmingPatch targetPatch = farmingWorld.getRegionsForLocation(actionLocation)
-			.stream()
-			.flatMap(fr -> Arrays.stream(fr.getPatches()))
-			.filter(fp -> fp.getVarbit() == patchDef.getVarbitId())
-			.filter(fp -> fp.getImplementation() != PatchImplementation.COMPOST && fp.getImplementation() != PatchImplementation.BIG_COMPOST)
-			.findFirst()
-			.orElse(null);
-		if (targetPatch == null)
+		if (farmingPatch == null)
 		{
 			return;
 		}
+		var compostStateVal = event.getValue();
 
-		log.debug("Storing pending compost action for patch [{}]", targetPatch);
-		PendingCompost pc = new PendingCompost(
-			Instant.now().plus(COMPOST_ACTION_TIMEOUT),
-			actionLocation,
-			targetPatch
-		);
-		pendingCompostActions.put(targetPatch, pc);
-	}
-
-	private boolean isCompostAction(MenuOptionClicked e)
-	{
-		switch (e.getMenuAction())
+		CompostState compostState = null;
+		switch (compostStateVal)
 		{
-			case WIDGET_TARGET_ON_GAME_OBJECT:
-				Widget w = client.getSelectedWidget();
-				return w != null && (COMPOST_ITEMS.contains(w.getItemId()) || w.getId() == InterfaceID.MagicSpellbook.FERTILE_SOIL);
-
-			case GAME_OBJECT_FIRST_OPTION:
-			case GAME_OBJECT_SECOND_OPTION:
-			case GAME_OBJECT_THIRD_OPTION:
-			case GAME_OBJECT_FOURTH_OPTION:
-			case GAME_OBJECT_FIFTH_OPTION:
-				return "Inspect".equals(e.getMenuOption());
-
-			default:
-				return false;
-		}
-	}
-
-	@Subscribe
-	public void onChatMessage(ChatMessage e)
-	{
-		if (e.getType() != ChatMessageType.GAMEMESSAGE && e.getType() != ChatMessageType.SPAM)
-		{
-			return;
-		}
-
-		CompostState compostUsed = determineCompostUsed(e.getMessage());
-		if (compostUsed == null)
-		{
-			return;
-		}
-
-		this.expirePendingActions();
-
-		pendingCompostActions.values()
-			.stream()
-			.filter(this::playerIsBesidePatch)
-			.findFirst()
-			.ifPresent(pc ->
-			{
-				setCompostState(pc.getFarmingPatch(), compostUsed);
-				pendingCompostActions.remove(pc.getFarmingPatch());
-			});
-	}
-
-	@Subscribe
-	public void onGameStateChanged(GameStateChanged e)
-	{
-		switch (e.getGameState())
-		{
-			case LOGGED_IN:
-			case LOADING:
-				return;
-
-			default:
-				pendingCompostActions.clear();
-		}
-	}
-
-	private boolean playerIsBesidePatch(PendingCompost pendingCompost)
-	{
-		// find gameobject instance in scene
-		// it is possible that the scene has reloaded between use and action occurring so we use worldpoint
-		// instead of storing scene coords in the menuoptionclicked event
-		LocalPoint localPatchLocation = LocalPoint.fromWorld(client, pendingCompost.getPatchLocation());
-		if (localPatchLocation == null)
-		{
-			return false;
-		}
-
-		@Varbit int patchVarb = pendingCompost.getFarmingPatch().getVarbit();
-		Tile patchTile = client.getScene()
-			.getTiles()[client.getPlane()][localPatchLocation.getSceneX()][localPatchLocation.getSceneY()];
-		GameObject patchObject = null;
-		for (GameObject go : patchTile.getGameObjects())
-		{
-			if (go != null && client.getObjectDefinition(go.getId()).getVarbitId() == patchVarb)
-			{
-				patchObject = go;
+			case 1:
+				compostState = CompostState.COMPOST;
 				break;
-			}
+			case 2:
+				compostState = CompostState.SUPERCOMPOST;
+				break;
+			case 3:
+				compostState = CompostState.ULTRACOMPOST;
+				break;
 		}
-		assert patchObject != null;
-
-		// player coords
-		final WorldPoint playerPos = client.getLocalPlayer().getWorldLocation();
-		final int playerX = playerPos.getX();
-		final int playerY = playerPos.getY();
-
-		// patch coords
-		final WorldPoint patchBase = pendingCompost.getPatchLocation();
-		final int minX = patchBase.getX();
-		final int minY = patchBase.getY();
-		final int maxX = minX + patchObject.sizeX() - 1;
-		final int maxY = minY + patchObject.sizeY() - 1;
-
-		// player should be within one tile of these coords
-		return playerX >= (minX - 1) && playerX <= (maxX + 1) && playerY >= (minY - 1) && playerY <= (maxY + 1);
+		log.info("Compost state is now {} for patch {} - {}", compostState, farmingPatch.getRegion().getName(), farmingPatch.getName());
+		setCompostState(farmingPatch, compostState);
 	}
-
-	private void expirePendingActions()
-	{
-		pendingCompostActions.values().removeIf(e -> Instant.now().isAfter(e.getTimeout()));
-	}
-
-	@VisibleForTesting
-	static CompostState determineCompostUsed(String chatMessage)
-	{
-		if (!chatMessage.contains("compost"))
-		{
-			return null;
-		}
-
-		Matcher matcher;
-		if ((matcher = COMPOST_USED_ON_PATCH.matcher(chatMessage)).matches() ||
-			(matcher = FERTILE_SOIL_CAST.matcher(chatMessage)).find() ||
-			(matcher = ALREADY_TREATED.matcher(chatMessage)).matches() ||
-			(matcher = INSPECT_PATCH.matcher(chatMessage)).matches())
-		{
-			String compostGroup = matcher.group("compostType");
-			switch (compostGroup)
-			{
-				case "ultra":
-					return CompostState.ULTRACOMPOST;
-				case "super":
-					return CompostState.SUPERCOMPOST;
-				default:
-					return CompostState.COMPOST;
-			}
-		}
-
-		return null;
-	}
-
 }

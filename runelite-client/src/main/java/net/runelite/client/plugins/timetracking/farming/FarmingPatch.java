@@ -42,25 +42,28 @@ class FarmingPatch
 	private final String name;
 	@Getter(onMethod_ = {@Varbit})
 	private final int varbit;
+	@Getter(onMethod_ = {@Varbit})
+	private final int compostVarbit;
 	@ToString.Include
 	private final PatchImplementation implementation;
 	private final int farmer;
 	private final int patchNumber;
 
-	FarmingPatch(String name, @Varbit int varbit, PatchImplementation implementation)
+	FarmingPatch(String name, @Varbit int varbit, @Varbit int compostVarbit, PatchImplementation implementation)
 	{
-		this(name, varbit, implementation, -1);
+		this(name, varbit, -1, implementation, -1);
 	}
 
-	FarmingPatch(String name, @Varbit int varbit, PatchImplementation implementation, int farmer)
+	FarmingPatch(String name, @Varbit int varbit, @Varbit int compostVarbit, PatchImplementation implementation, int farmer)
 	{
-		this(name, varbit, implementation, farmer, -1);
+		this(name, varbit, -1, implementation, farmer, -1);
 	}
 
-	FarmingPatch(String name, @Varbit int varbit, PatchImplementation implementation, int farmer, int patchNumber)
+	FarmingPatch(String name, @Varbit int varbit, @Varbit int compostVarbit, PatchImplementation implementation, int farmer, int patchNumber)
 	{
 		this.name = name;
 		this.varbit = varbit;
+		this.compostVarbit = compostVarbit;
 		this.implementation = implementation;
 		this.farmer = farmer;
 		this.patchNumber = patchNumber;

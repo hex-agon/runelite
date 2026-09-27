@@ -99,11 +99,11 @@ public class FarmingTrackerTest
 
 		PatchPrediction patchPrediction = new PatchPrediction(Produce.EMPTY_COMPOST_BIN, CropState.EMPTY, 0L, 0, 0);
 		FarmingRegion region = new FarmingRegion("Ardougne", 10548, false,
-			new FarmingPatch("North", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.ALLOTMENT),
-			new FarmingPatch("South", VarbitID.FARMING_TRANSMIT_B, PatchImplementation.ALLOTMENT),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_C, PatchImplementation.FLOWER),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_D, PatchImplementation.HERB),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_E, PatchImplementation.COMPOST)
+			new FarmingPatch("North", VarbitID.FARMING_TRANSMIT_A, -1, PatchImplementation.ALLOTMENT),
+			new FarmingPatch("South", VarbitID.FARMING_TRANSMIT_B, -1, PatchImplementation.ALLOTMENT),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_C, -1, PatchImplementation.FLOWER),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_D, -1, PatchImplementation.HERB),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_E, -1, PatchImplementation.COMPOST)
 		);
 		FarmingPatch patch = region.getPatches()[4];
 		patch.setRegion(region);
@@ -117,11 +117,11 @@ public class FarmingTrackerTest
 
 		PatchPrediction patchPrediction = new PatchPrediction(Produce.RANARR, CropState.HARVESTABLE, 0L, 0, 0);
 		FarmingRegion region = new FarmingRegion("Ardougne", 10548, false,
-			new FarmingPatch("North", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.ALLOTMENT),
-			new FarmingPatch("South", VarbitID.FARMING_TRANSMIT_B, PatchImplementation.ALLOTMENT),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_C, PatchImplementation.FLOWER),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_D, PatchImplementation.HERB),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_E, PatchImplementation.COMPOST)
+			new FarmingPatch("North", VarbitID.FARMING_TRANSMIT_A, -1, PatchImplementation.ALLOTMENT),
+			new FarmingPatch("South", VarbitID.FARMING_TRANSMIT_B, -1, PatchImplementation.ALLOTMENT),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_C, -1, PatchImplementation.FLOWER),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_D, -1, PatchImplementation.HERB),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_E, -1, PatchImplementation.COMPOST)
 		);
 		FarmingPatch patch = region.getPatches()[3];
 		patch.setRegion(region);

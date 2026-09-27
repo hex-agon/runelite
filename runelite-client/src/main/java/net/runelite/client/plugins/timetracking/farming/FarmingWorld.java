@@ -39,6 +39,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 import lombok.Getter;
+import net.runelite.api.annotations.Varbit;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.gameval.NpcID;
 import net.runelite.api.gameval.VarbitID;
@@ -67,48 +68,48 @@ class FarmingWorld
 		// Some of these patches get updated in multiple regions.
 		// It may be worth it to add a specialization for these patches
 		add(new FarmingRegion("Al Kharid", 13106, false,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.CACTUS, NpcID.FARMING_GARDENER_CACTUS)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_CACTUS_TRANSMIT, PatchImplementation.CACTUS, NpcID.FARMING_GARDENER_CACTUS)
 		), 13362, 13105);
 
 		add(new FarmingRegion("Aldarin", 5421, false,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.HOPS, NpcID.FARMING_GARDENER_HOPS_5)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_HOPS_5_TRANSMIT, PatchImplementation.HOPS, NpcID.FARMING_GARDENER_HOPS_5)
 		), 5165, 5166, 5422, 5677, 5678);
 
 		add(new FarmingRegion("Anglers' Retreat", 9770, false,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.HARDWOOD_TREE, NpcID.FARMING_GARDENER_HARDWOOD_TREE_5)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_HARDWOOD_5_TRANSMIT, PatchImplementation.HARDWOOD_TREE, NpcID.FARMING_GARDENER_HARDWOOD_TREE_5)
 		));
 
 		add(new FarmingRegion("Ardougne", 10290, false,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.BUSH, NpcID.FARMING_GARDENER_BUSH_4)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_BUSH_4_TRANSMIT, PatchImplementation.BUSH, NpcID.FARMING_GARDENER_BUSH_4)
 		), 10546);
 		add(new FarmingRegion("Ardougne", 10548, false,
-			new FarmingPatch("North", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.ALLOTMENT, NpcID.KRAGEN, 0),
-			new FarmingPatch("South", VarbitID.FARMING_TRANSMIT_B, PatchImplementation.ALLOTMENT, NpcID.KRAGEN, 1),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_C, PatchImplementation.FLOWER),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_D, PatchImplementation.HERB),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_E, PatchImplementation.COMPOST)
+			new FarmingPatch("North", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_VEG_5_TRANSMIT, PatchImplementation.ALLOTMENT, NpcID.KRAGEN, 0),
+			new FarmingPatch("South", VarbitID.FARMING_TRANSMIT_B, VarbitID.FARMING_COMPOST_VARBIT_VEG_6_TRANSMIT, PatchImplementation.ALLOTMENT, NpcID.KRAGEN, 1),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_C, VarbitID.FARMING_COMPOST_VARBIT_FLOWER_3_TRANSMIT, PatchImplementation.FLOWER),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_D, VarbitID.FARMING_COMPOST_VARBIT_HERB_3_TRANSMIT, PatchImplementation.HERB),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_E, -1, PatchImplementation.COMPOST)
 		));
 
 		add(new FarmingRegion("Auburnvale", 5427, false,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.TREE, NpcID.FARMING_GARDENER_TREE_7),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_B, PatchImplementation.BELLADONNA)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_TREE_COMPOST_7_TRANSMIT, PatchImplementation.TREE, NpcID.FARMING_GARDENER_TREE_7),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_B, VarbitID.FARMING_COMPOST_VARBIT_BELLADONNA_2_TRANSMIT, PatchImplementation.BELLADONNA)
 		), 5428, 5684);
 
 		add(new FarmingRegion("Avium Savannah", 6702, true,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.HARDWOOD_TREE, NpcID.FROG_QUEST_MARCELLUS)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_HARDWOOD_4_TRANSMIT, PatchImplementation.HARDWOOD_TREE, NpcID.FROG_QUEST_MARCELLUS)
 		), 6446);
 
 		add(new FarmingRegion("Brimhaven", 11058, false,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.FRUIT_TREE, NpcID.GARTH),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_B, PatchImplementation.SPIRIT_TREE, NpcID.FARMING_GARDENER_SPIRIT_TREE_3)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_FRUIT_TREE_3_TRANSMIT, PatchImplementation.FRUIT_TREE, NpcID.GARTH),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_B, VarbitID.FARMING_COMPOST_VARBIT_SPIRIT_TREE_3_TRANSMIT, PatchImplementation.SPIRIT_TREE, NpcID.FARMING_GARDENER_SPIRIT_TREE_3)
 		), 11057);
 
 		add(new FarmingRegion("Catherby", 11062, false,
-			new FarmingPatch("North", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.ALLOTMENT, NpcID.DANTAERA, 0),
-			new FarmingPatch("South", VarbitID.FARMING_TRANSMIT_B, PatchImplementation.ALLOTMENT, NpcID.DANTAERA, 1),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_C, PatchImplementation.FLOWER),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_D, PatchImplementation.HERB),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_E, PatchImplementation.COMPOST)
+			new FarmingPatch("North", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_VEG_3_TRANSMIT, PatchImplementation.ALLOTMENT, NpcID.DANTAERA, 0),
+			new FarmingPatch("South", VarbitID.FARMING_TRANSMIT_B, VarbitID.FARMING_COMPOST_VARBIT_VEG_4_TRANSMIT, PatchImplementation.ALLOTMENT, NpcID.DANTAERA, 1),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_C, VarbitID.FARMING_COMPOST_VARBIT_FLOWER_2_TRANSMIT, PatchImplementation.FLOWER),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_D, VarbitID.FARMING_COMPOST_VARBIT_HERB_2_TRANSMIT, PatchImplementation.HERB),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_E, -1, PatchImplementation.COMPOST)
 		)
 		{
 			@Override
@@ -123,7 +124,7 @@ class FarmingWorld
 			}
 		}, 11061, 11318, 11317);
 		add(new FarmingRegion("Catherby", 11317, false,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.FRUIT_TREE, NpcID.FARMING_GARDENER_FRUIT_4)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_FRUIT_TREE_4_TRANSMIT, PatchImplementation.FRUIT_TREE, NpcID.FARMING_GARDENER_FRUIT_4)
 		)
 		{
 			//The fruit tree patch is always sent when upstairs in 11317
@@ -135,39 +136,39 @@ class FarmingWorld
 		});
 
 		add(new FarmingRegion("Civitas illa Fortis", 6192, false,
-			new FarmingPatch("North", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.ALLOTMENT, NpcID.FORTIS_GARDENER, 0),
-			new FarmingPatch("South", VarbitID.FARMING_TRANSMIT_B, PatchImplementation.ALLOTMENT, NpcID.FORTIS_GARDENER, 1),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_C, PatchImplementation.FLOWER),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_D, PatchImplementation.HERB),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_E, PatchImplementation.COMPOST)
+			new FarmingPatch("North", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_VEG_16_TRANSMIT, PatchImplementation.ALLOTMENT, NpcID.FORTIS_GARDENER, 0),
+			new FarmingPatch("South", VarbitID.FARMING_TRANSMIT_B, VarbitID.FARMING_COMPOST_VARBIT_VEG_17_TRANSMIT, PatchImplementation.ALLOTMENT, NpcID.FORTIS_GARDENER, 1),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_C, VarbitID.FARMING_COMPOST_VARBIT_FLOWER_8_TRANSMIT, PatchImplementation.FLOWER),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_D, VarbitID.FARMING_COMPOST_VARBIT_HERB_8_TRANSMIT, PatchImplementation.HERB),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_E, -1, PatchImplementation.COMPOST)
 		), 6447, 6448, 6449, 6191, 6193);
 
 		add(new FarmingRegion("Champions' Guild", 12596, true,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.BUSH, NpcID.FARMING_GARDENER_BUSH_1)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_BUSH_1_TRANSMIT, PatchImplementation.BUSH, NpcID.FARMING_GARDENER_BUSH_1)
 		));
 
 		add(new FarmingRegion("Draynor Manor", 12340, false,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.BELLADONNA)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_BELLADONNA_TRANSMIT, PatchImplementation.BELLADONNA)
 		));
 
 		add(new FarmingRegion("Entrana", 11060, false,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.HOPS, NpcID.FRANCIS)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_HOPS_2_TRANSMIT, PatchImplementation.HOPS, NpcID.FRANCIS)
 		), 11316);
 
 		add(new FarmingRegion("Etceteria", 10300, false,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.BUSH, NpcID.FARMING_GARDENER_BUSH_3),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_B, PatchImplementation.SPIRIT_TREE, NpcID.FARMING_GARDENER_SPIRIT_TREE_2)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_BUSH_3_TRANSMIT, PatchImplementation.BUSH, NpcID.FARMING_GARDENER_BUSH_3),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_B, -1, PatchImplementation.SPIRIT_TREE, NpcID.FARMING_GARDENER_SPIRIT_TREE_2)
 		));
 
 		add(new FarmingRegion("Falador", 11828, false,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.TREE, NpcID.FARMING_GARDENER_TREE_2)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_TREE_2_TRANSMIT, PatchImplementation.TREE, NpcID.FARMING_GARDENER_TREE_2)
 		), 12084);
 		add(new FarmingRegion("Falador", 12083, false,
-			new FarmingPatch("North West", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.ALLOTMENT, NpcID.ELSTAN, 0),
-			new FarmingPatch("South East", VarbitID.FARMING_TRANSMIT_B, PatchImplementation.ALLOTMENT, NpcID.ELSTAN, 1),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_C, PatchImplementation.FLOWER),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_D, PatchImplementation.HERB),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_E, PatchImplementation.COMPOST)
+			new FarmingPatch("North West", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_VEG_1_TRANSMIT, PatchImplementation.ALLOTMENT, NpcID.ELSTAN, 0),
+			new FarmingPatch("South East", VarbitID.FARMING_TRANSMIT_B, VarbitID.FARMING_COMPOST_VARBIT_VEG_2_TRANSMIT, PatchImplementation.ALLOTMENT, NpcID.ELSTAN, 1),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_C, VarbitID.FARMING_COMPOST_VARBIT_FLOWER_1_TRANSMIT, PatchImplementation.FLOWER),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_D, VarbitID.FARMING_COMPOST_VARBIT_HERB_1_TRANSMIT, PatchImplementation.HERB),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_E, -1, PatchImplementation.COMPOST)
 		)
 		{
 			@Override
@@ -179,9 +180,9 @@ class FarmingWorld
 		});
 
 		add(new FarmingRegion("Fossil Island", 14651, false,
-			new FarmingPatch("East", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.HARDWOOD_TREE, NpcID.FOSSIL_SQUIRREL_GARDENER1),
-			new FarmingPatch("Middle", VarbitID.FARMING_TRANSMIT_B, PatchImplementation.HARDWOOD_TREE, NpcID.FOSSIL_SQUIRREL_GARDENER2),
-			new FarmingPatch("West", VarbitID.FARMING_TRANSMIT_C, PatchImplementation.HARDWOOD_TREE, NpcID.FOSSIL_SQUIRREL_GARDENER3)
+			new FarmingPatch("East", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_HARDWOOD_1_TRANSMIT, PatchImplementation.HARDWOOD_TREE, NpcID.FOSSIL_SQUIRREL_GARDENER1),
+			new FarmingPatch("Middle", VarbitID.FARMING_TRANSMIT_B, VarbitID.FARMING_COMPOST_VARBIT_HARDWOOD_2_TRANSMIT, PatchImplementation.HARDWOOD_TREE, NpcID.FOSSIL_SQUIRREL_GARDENER2),
+			new FarmingPatch("West", VarbitID.FARMING_TRANSMIT_C, VarbitID.FARMING_COMPOST_VARBIT_HARDWOOD_3_TRANSMIT, PatchImplementation.HARDWOOD_TREE, NpcID.FOSSIL_SQUIRREL_GARDENER3)
 		)
 		{
 			@Override
@@ -207,79 +208,79 @@ class FarmingWorld
 			}
 		}, 14907, 14908, 15164, 14652, 14906, 14650, 15162, 15163);
 		add(new FarmingRegion("Seaweed", 15008, false,
-			new FarmingPatch("North", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.SEAWEED, NpcID.FOSSIL_GARDENER_UNDERWATER, 0),
-			new FarmingPatch("South", VarbitID.FARMING_TRANSMIT_B, PatchImplementation.SEAWEED, NpcID.FOSSIL_GARDENER_UNDERWATER, 1)
+			new FarmingPatch("North", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_SEAWEED_1_TRANSMIT, PatchImplementation.SEAWEED, NpcID.FOSSIL_GARDENER_UNDERWATER, 0),
+			new FarmingPatch("South", VarbitID.FARMING_TRANSMIT_B, VarbitID.FARMING_COMPOST_VARBIT_SEAWEED_2_TRANSMIT, PatchImplementation.SEAWEED, NpcID.FOSSIL_GARDENER_UNDERWATER, 1)
 		));
 
 		add(new FarmingRegion("Gnome Stronghold", 9781, true,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.TREE, NpcID.FARMING_GARDENER_TREE_GNOME),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_B, PatchImplementation.FRUIT_TREE, NpcID.FARMING_GARDENER_FRUIT_1)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_TREE_COMPOST_5_TRANSMIT, PatchImplementation.TREE, NpcID.FARMING_GARDENER_TREE_GNOME),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_B, VarbitID.FARMING_COMPOST_VARBIT_FRUIT_TREE_1_TRANSMIT, PatchImplementation.FRUIT_TREE, NpcID.FARMING_GARDENER_FRUIT_1)
 		), 9782, 9526, 9525);
 
 		add(new FarmingRegion("Great Conch", 12581, true,
-			new FarmingPatch("East", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.CORAL, NpcID.TORTUGAN_CORAL_FARMER, 0),
-			new FarmingPatch("West", VarbitID.FARMING_TRANSMIT_B, PatchImplementation.CORAL, NpcID.TORTUGAN_CORAL_FARMER, 1),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_C, PatchImplementation.CALQUAT, NpcID.FARMING_GARDENER_CALQUAT_3)
+			new FarmingPatch("East", VarbitID.FARMING_TRANSMIT_A, -1, PatchImplementation.CORAL, NpcID.TORTUGAN_CORAL_FARMER, 0),
+			new FarmingPatch("West", VarbitID.FARMING_TRANSMIT_B, -1, PatchImplementation.CORAL, NpcID.TORTUGAN_CORAL_FARMER, 1),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_C, -1, PatchImplementation.CALQUAT, NpcID.FARMING_GARDENER_CALQUAT_3)
 		),  12325, 12326, 12327, 12580, 12581, 12582, 12583, 12836, 12837, 12838, 12839, 13092, 13093, 13194);
 
 		add(new FarmingRegion("Harmony", 15148, false,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.ALLOTMENT),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_B, PatchImplementation.HERB)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_VEG_VARBIT_9, PatchImplementation.ALLOTMENT),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_B, VarbitID.FARMING_COMPOST_VARBIT_HERB_5_TRANSMIT, PatchImplementation.HERB)
 		));
 
 		add(new FarmingRegion("Kastori", 5423, false,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.CALQUAT, NpcID.FARMING_GARDENER_CALQUAT_2),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_B, PatchImplementation.FRUIT_TREE, NpcID.FARMING_GARDENER_FRUIT_7),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_C, PatchImplementation.FLOWER)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_CALQUAT_TREE_2_TRANSMIT, PatchImplementation.CALQUAT, NpcID.FARMING_GARDENER_CALQUAT_2),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_B, VarbitID.FARMING_COMPOST_VARBIT_FRUIT_TREE_7_TRANSMIT, PatchImplementation.FRUIT_TREE, NpcID.FARMING_GARDENER_FRUIT_7),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_C, VarbitID.FARMING_COMPOST_VARBIT_FLOWER_9_TRANSMIT, PatchImplementation.FLOWER)
 		), 5167, 5424);
 
 		add(new FarmingRegion("Kourend", 6967, false,
-			new FarmingPatch("North East", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.ALLOTMENT, NpcID.HOSIDIUS_ALLOTMENT_GARDENER, 0),
-			new FarmingPatch("South West", VarbitID.FARMING_TRANSMIT_B, PatchImplementation.ALLOTMENT, NpcID.HOSIDIUS_ALLOTMENT_GARDENER, 1),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_C, PatchImplementation.FLOWER),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_D, PatchImplementation.HERB),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_E, PatchImplementation.COMPOST),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_F, PatchImplementation.SPIRIT_TREE, NpcID.FARMING_GARDENER_SPIRIT_TREE_4)
+			new FarmingPatch("North East", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_VEG_10_TRANSMIT, PatchImplementation.ALLOTMENT, NpcID.HOSIDIUS_ALLOTMENT_GARDENER, 0),
+			new FarmingPatch("South West", VarbitID.FARMING_TRANSMIT_B, VarbitID.FARMING_COMPOST_VARBIT_VEG_11_TRANSMIT, PatchImplementation.ALLOTMENT, NpcID.HOSIDIUS_ALLOTMENT_GARDENER, 1),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_C, VarbitID.FARMING_COMPOST_VARBIT_FLOWER_5_TRANSMIT, PatchImplementation.FLOWER),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_D, VarbitID.FARMING_COMPOST_VARBIT_HERB_6_TRANSMIT, PatchImplementation.HERB),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_E, -1, PatchImplementation.COMPOST),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_F, VarbitID.FARMING_COMPOST_VARBIT_SPIRIT_TREE_4_TRANSMIT, PatchImplementation.SPIRIT_TREE, NpcID.FARMING_GARDENER_SPIRIT_TREE_4)
 		), 6711);
 		add(new FarmingRegion("Kourend", 7223, false,
-			new FarmingPatch("East 1", VarbitID.FARMING_TRANSMIT_A1, PatchImplementation.GRAPES),
-			new FarmingPatch("East 2", VarbitID.FARMING_TRANSMIT_A2, PatchImplementation.GRAPES),
-			new FarmingPatch("East 3", VarbitID.FARMING_TRANSMIT_B1, PatchImplementation.GRAPES),
-			new FarmingPatch("East 4", VarbitID.FARMING_TRANSMIT_B2, PatchImplementation.GRAPES),
-			new FarmingPatch("East 5", VarbitID.FARMING_TRANSMIT_C1, PatchImplementation.GRAPES),
-			new FarmingPatch("East 6", VarbitID.FARMING_TRANSMIT_C2, PatchImplementation.GRAPES),
-			new FarmingPatch("West 1", VarbitID.FARMING_TRANSMIT_D1, PatchImplementation.GRAPES),
-			new FarmingPatch("West 2", VarbitID.FARMING_TRANSMIT_D2, PatchImplementation.GRAPES),
-			new FarmingPatch("West 3", VarbitID.FARMING_TRANSMIT_E1, PatchImplementation.GRAPES),
-			new FarmingPatch("West 4", VarbitID.FARMING_TRANSMIT_E2, PatchImplementation.GRAPES),
-			new FarmingPatch("West 5", VarbitID.FARMING_TRANSMIT_F1, PatchImplementation.GRAPES),
-			new FarmingPatch("West 6", VarbitID.FARMING_TRANSMIT_F2, PatchImplementation.GRAPES)
+			new FarmingPatch("East 1", VarbitID.FARMING_TRANSMIT_A1, -1, PatchImplementation.GRAPES),
+			new FarmingPatch("East 2", VarbitID.FARMING_TRANSMIT_A2, -1, PatchImplementation.GRAPES),
+			new FarmingPatch("East 3", VarbitID.FARMING_TRANSMIT_B1, -1, PatchImplementation.GRAPES),
+			new FarmingPatch("East 4", VarbitID.FARMING_TRANSMIT_B2, -1, PatchImplementation.GRAPES),
+			new FarmingPatch("East 5", VarbitID.FARMING_TRANSMIT_C1, -1, PatchImplementation.GRAPES),
+			new FarmingPatch("East 6", VarbitID.FARMING_TRANSMIT_C2, -1, PatchImplementation.GRAPES),
+			new FarmingPatch("West 1", VarbitID.FARMING_TRANSMIT_D1, -1, PatchImplementation.GRAPES),
+			new FarmingPatch("West 2", VarbitID.FARMING_TRANSMIT_D2, -1, PatchImplementation.GRAPES),
+			new FarmingPatch("West 3", VarbitID.FARMING_TRANSMIT_E1, -1, PatchImplementation.GRAPES),
+			new FarmingPatch("West 4", VarbitID.FARMING_TRANSMIT_E2, -1, PatchImplementation.GRAPES),
+			new FarmingPatch("West 5", VarbitID.FARMING_TRANSMIT_F1, -1, PatchImplementation.GRAPES),
+			new FarmingPatch("West 6", VarbitID.FARMING_TRANSMIT_F2, -1, PatchImplementation.GRAPES)
 		));
 
 		add(new FarmingRegion("Lletya", 9265, false,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.FRUIT_TREE, NpcID.FARMING_GARDENER_FRUIT_TREE_5)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_FRUIT_TREE_5_TRANSMIT, PatchImplementation.FRUIT_TREE, NpcID.FARMING_GARDENER_FRUIT_TREE_5)
 		), 11103);
 
 		add(new FarmingRegion("Lumbridge", 12851, false,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.HOPS, NpcID.FARMING_GARDENER_HOPS_3)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_HOPS_3_TRANSMIT, PatchImplementation.HOPS, NpcID.FARMING_GARDENER_HOPS_3)
 		));
 		add(new FarmingRegion("Lumbridge", 12594, false,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.TREE, NpcID.FARMING_GARDENER_TREE_4)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_TREE_4_TRANSMIT, PatchImplementation.TREE, NpcID.FARMING_GARDENER_TREE_4)
 		), 12850);
 
 		add(new FarmingRegion("Morytania", 13622, false,
-			new FarmingPatch("Mushroom", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.MUSHROOM)
+			new FarmingPatch("Mushroom", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_MUSHROOM_TRANSMIT, PatchImplementation.MUSHROOM)
 		), 13878);
 		add(new FarmingRegion("Morytania", 14391, false,
-			new FarmingPatch("North West", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.ALLOTMENT, NpcID.LYRA, 0),
-			new FarmingPatch("South East", VarbitID.FARMING_TRANSMIT_B, PatchImplementation.ALLOTMENT, NpcID.LYRA, 1),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_C, PatchImplementation.FLOWER),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_D, PatchImplementation.HERB),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_E, PatchImplementation.COMPOST)
+			new FarmingPatch("North West", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_VEG_7_TRANSMIT, PatchImplementation.ALLOTMENT, NpcID.LYRA, 0),
+			new FarmingPatch("South East", VarbitID.FARMING_TRANSMIT_B, VarbitID.FARMING_COMPOST_VARBIT_VEG_8_TRANSMIT, PatchImplementation.ALLOTMENT, NpcID.LYRA, 1),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_C, VarbitID.FARMING_COMPOST_VARBIT_FLOWER_4_TRANSMIT, PatchImplementation.FLOWER),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_D, VarbitID.FARMING_COMPOST_VARBIT_HERB_4_TRANSMIT, PatchImplementation.HERB),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_E, -1, PatchImplementation.COMPOST)
 		), 14390);
 
 		add(new FarmingRegion("Port Sarim", 12082, false,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.SPIRIT_TREE, NpcID.FARMING_GARDENER_SPIRIT_TREE_1)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_SPIRIT_TREE_1_TRANSMIT, PatchImplementation.SPIRIT_TREE, NpcID.FARMING_GARDENER_SPIRIT_TREE_1)
 		)
 		{
 			@Override
@@ -290,69 +291,69 @@ class FarmingWorld
 		}, 12083);
 
 		add(new FarmingRegion("Rimmington", 11570, false,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.BUSH, NpcID.FARMING_GARDENER_BUSH_2)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_BUSH_2_TRANSMIT, PatchImplementation.BUSH, NpcID.FARMING_GARDENER_BUSH_2)
 		), 11826);
 
 		add(new FarmingRegion("Seers' Village", 10551, false,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.HOPS, NpcID.FARMING_GARDENER_HOPS_4)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_HOPS_4_TRANSMIT, PatchImplementation.HOPS, NpcID.FARMING_GARDENER_HOPS_4)
 		), 10550);
 
 		add(new FarmingRegion("Tai Bwo Wannai", 11056, false,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.CALQUAT, NpcID.FARMING_GARDENER_CALQUAT)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_CALQUAT_TREE_TRANSMIT, PatchImplementation.CALQUAT, NpcID.FARMING_GARDENER_CALQUAT)
 		));
 
 		add(new FarmingRegion("Taverley", 11573, false,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.TREE, NpcID.FARMING_GARDENER_TREE_1)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_TREE_1_TRANSMIT, PatchImplementation.TREE, NpcID.FARMING_GARDENER_TREE_1)
 		), 11829);
 
 		add(new FarmingRegion("Tree Gnome Village", 9777, true,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.FRUIT_TREE, NpcID.FARMING_GARDENER_FRUIT_2)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_FRUIT_TREE_2_TRANSMIT, PatchImplementation.FRUIT_TREE, NpcID.FARMING_GARDENER_FRUIT_2)
 		), 10033);
 
 		add(new FarmingRegion("Troll Stronghold", 11321, true,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.HERB)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.MYARM_HERBPATCH_COMPOST_TRANSMIT, PatchImplementation.HERB)
 		));
 
 		add(new FarmingRegion("Varrock", 12854, false,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.TREE, NpcID.FARMING_GARDENER_TREE_3_02)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_TREE_3_TRANSMIT, PatchImplementation.TREE, NpcID.FARMING_GARDENER_TREE_3_02)
 		), 12853);
 
 		add(new FarmingRegion("Yanille", 10288, false,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.HOPS, NpcID.FARMING_GARDENER_HOPS_1)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_HOPS_1_TRANSMIT, PatchImplementation.HOPS, NpcID.FARMING_GARDENER_HOPS_1)
 		));
 
 		add(new FarmingRegion("Weiss", 11325, false,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.HERB)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.MY2ARM_HERBPATCH_COMPOST_TRANSMIT, PatchImplementation.HERB)
 		));
 
 		add(new FarmingRegion("Farming Guild", 5021, true,
-			new FarmingPatch("Hespori", VarbitID.FARMING_TRANSMIT_J, PatchImplementation.HESPORI)
+			new FarmingPatch("Hespori", VarbitID.FARMING_TRANSMIT_J, -1, PatchImplementation.HESPORI)
 		));
 
 		//Full 3x3 region area centered on farming guild
 		add(farmingGuildRegion = new FarmingRegion("Farming Guild", 4922, true,
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_G, PatchImplementation.TREE, NpcID.FARMING_GARDENER_FARMGUILD_T2),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_E, PatchImplementation.HERB),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_B, PatchImplementation.BUSH, NpcID.FARMING_GARDENER_FARMGUILD_T1, 3),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_H, PatchImplementation.FLOWER),
-			new FarmingPatch("North", VarbitID.FARMING_TRANSMIT_C, PatchImplementation.ALLOTMENT, NpcID.FARMING_GARDENER_FARMGUILD_T1, 1),
-			new FarmingPatch("South", VarbitID.FARMING_TRANSMIT_D, PatchImplementation.ALLOTMENT, NpcID.FARMING_GARDENER_FARMGUILD_T1, 2),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_N, PatchImplementation.BIG_COMPOST),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_F, PatchImplementation.CACTUS, NpcID.FARMING_GARDENER_FARMGUILD_T1, 0),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.SPIRIT_TREE, NpcID.FARMING_GARDENER_SPIRIT_TREE_5),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_K, PatchImplementation.FRUIT_TREE, NpcID.FARMING_GARDENER_FARMGUILD_T3),
-			new FarmingPatch("Anima", VarbitID.FARMING_TRANSMIT_M, PatchImplementation.ANIMA),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_L, PatchImplementation.CELASTRUS, NpcID.FARMING_GARDENER_FARMGUILD_CELASTRUS),
-			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_I, PatchImplementation.REDWOOD, NpcID.FARMING_GARDENER_FARMGUILD_REDWOOD)
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_G, VarbitID.FARMING_TREE_COMPOST_6_TRANSMIT, PatchImplementation.TREE, NpcID.FARMING_GARDENER_FARMGUILD_T2),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_E, VarbitID.FARMING_COMPOST_VARBIT_HERB_7_TRANSMIT, PatchImplementation.HERB),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_B, VarbitID.FARMING_COMPOST_VARBIT_BUSH_5_TRANSMIT, PatchImplementation.BUSH, NpcID.FARMING_GARDENER_FARMGUILD_T1, 3),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_H, VarbitID.FARMING_COMPOST_VARBIT_FLOWER_6_TRANSMIT, PatchImplementation.FLOWER),
+			new FarmingPatch("North", VarbitID.FARMING_TRANSMIT_C, VarbitID.FARMING_COMPOST_VARBIT_VEG_12_TRANSMIT, PatchImplementation.ALLOTMENT, NpcID.FARMING_GARDENER_FARMGUILD_T1, 1),
+			new FarmingPatch("South", VarbitID.FARMING_TRANSMIT_D, VarbitID.FARMING_COMPOST_VARBIT_VEG_13_TRANSMIT, PatchImplementation.ALLOTMENT, NpcID.FARMING_GARDENER_FARMGUILD_T1, 2),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_N, -1, PatchImplementation.BIG_COMPOST),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_F, VarbitID.FARMING_COMPOST_VARBIT_CACTUS_2_TRANSMIT, PatchImplementation.CACTUS, NpcID.FARMING_GARDENER_FARMGUILD_T1, 0),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_SPIRIT_TREE_5_TRANSMIT, PatchImplementation.SPIRIT_TREE, NpcID.FARMING_GARDENER_SPIRIT_TREE_5),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_K, VarbitID.FARMING_COMPOST_VARBIT_FRUIT_TREE_6_TRANSMIT, PatchImplementation.FRUIT_TREE, NpcID.FARMING_GARDENER_FARMGUILD_T3),
+			new FarmingPatch("Anima", VarbitID.FARMING_TRANSMIT_M, -1, PatchImplementation.ANIMA),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_L, VarbitID.FARMING_CELASTRUS_COMPOST_1_TRANSMIT, PatchImplementation.CELASTRUS, NpcID.FARMING_GARDENER_FARMGUILD_CELASTRUS),
+			new FarmingPatch("", VarbitID.FARMING_TRANSMIT_I, VarbitID.FARMING_REDWOOD_COMPOST_TRANSMIT, PatchImplementation.REDWOOD, NpcID.FARMING_GARDENER_FARMGUILD_REDWOOD)
 		), 5177, 5178, 5179, 4921, 4923, 4665, 4666, 4667);
 
 		//All of Prifddinas, and all of Prifddinas Underground
 		add(new FarmingRegion("Prifddinas", 13151, false,
-				new FarmingPatch("North", VarbitID.FARMING_TRANSMIT_A, PatchImplementation.ALLOTMENT, NpcID.PRIF_GARDENER, 0),
-				new FarmingPatch("South", VarbitID.FARMING_TRANSMIT_B, PatchImplementation.ALLOTMENT, NpcID.PRIF_GARDENER, 1),
-				new FarmingPatch("", VarbitID.FARMING_TRANSMIT_C, PatchImplementation.FLOWER),
-				new FarmingPatch("", VarbitID.FARMING_TRANSMIT_E, PatchImplementation.CRYSTAL_TREE),
-				new FarmingPatch("", VarbitID.FARMING_TRANSMIT_D, PatchImplementation.COMPOST)
+				new FarmingPatch("North", VarbitID.FARMING_TRANSMIT_A, VarbitID.FARMING_COMPOST_VARBIT_VEG_14_TRANSMIT, PatchImplementation.ALLOTMENT, NpcID.PRIF_GARDENER, 0),
+				new FarmingPatch("South", VarbitID.FARMING_TRANSMIT_B, VarbitID.FARMING_COMPOST_VARBIT_VEG_15_TRANSMIT, PatchImplementation.ALLOTMENT, NpcID.PRIF_GARDENER, 1),
+				new FarmingPatch("", VarbitID.FARMING_TRANSMIT_C, VarbitID.FARMING_COMPOST_VARBIT_FLOWER_7_TRANSMIT, PatchImplementation.FLOWER),
+				new FarmingPatch("", VarbitID.FARMING_TRANSMIT_E, VarbitID.FARMING_CRYSTAL_TREE_COMPOST_1_TRANSMIT, PatchImplementation.CRYSTAL_TREE),
+				new FarmingPatch("", VarbitID.FARMING_TRANSMIT_D, -1, PatchImplementation.COMPOST)
 			), 12895, 12894, 13150,
 			/* Underground */ 12994, 12993, 12737, 12738, 12126, 12127, 13250);
 
@@ -386,5 +387,21 @@ class FarmingWorld
 		return this.regions.get(location.getRegionID()).stream()
 			.filter(region -> region.isInBounds(location))
 			.collect(Collectors.toSet());
+	}
+
+	FarmingPatch getPatchForCompostVarbit(int varbitId)
+	{
+		// TODO: Lookup performance
+		for (FarmingRegion region : regions.values())
+		{
+			for (FarmingPatch patch : region.getPatches())
+			{
+				if (patch.getCompostVarbit() == varbitId)
+				{
+					return patch;
+				}
+			}
+		}
+		return null;
 	}
 }
